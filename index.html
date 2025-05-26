@@ -188,7 +188,7 @@
         </div>
         
         <div class="form-content">
-            <form id="intakeForm">
+            <form action="https://formspree.io/f/xgvkjqlz" method="POST">
                 <div class="form-group">
                     <label for="companyName">Company/Project Name <span class="required">*</span></label>
                     <input type="text" id="companyName" name="companyName" required>
@@ -210,15 +210,15 @@
                     <label>Platforms Needed <span class="required">*</span></label>
                     <div class="checkbox-group">
                         <div class="checkbox-item">
-                            <input type="checkbox" id="ios" name="platforms" value="ios">
+                            <input type="checkbox" id="ios" name="platforms" value="iOS">
                             <label for="ios">iOS</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="android" name="platforms" value="android">
+                            <input type="checkbox" id="android" name="platforms" value="Android">
                             <label for="android">Android</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="web" name="platforms" value="web">
+                            <input type="checkbox" id="web" name="platforms" value="Web">
                             <label for="web">Web</label>
                         </div>
                     </div>
@@ -302,63 +302,7 @@
     </div>
 
     <script>
-        document.getElementById('intakeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect form data
-            const formData = new FormData(this);
-            const data = {};
-            
-            // Handle regular fields
-            for (let [key, value] of formData.entries()) {
-                if (key === 'platforms') {
-                    if (!data[key]) data[key] = [];
-                    data[key].push(value);
-                } else {
-                    data[key] = value;
-                }
-            }
-            
-            // Handle checkboxes that weren't checked
-            const platforms = [];
-            document.querySelectorAll('input[name="platforms"]:checked').forEach(cb => {
-                platforms.push(cb.value);
-            });
-            data.platforms = platforms.join(', ');
-            
-            // Display the collected data in console (for demo purposes)
-            console.log('Form Submission Data:', data);
-            
-            // Create email content
-            let emailContent = `New Project Inquiry from: ${data.companyName}\n\n`;
-            emailContent += `Project Type: ${data.projectType}\n`;
-            emailContent += `Platforms: ${data.platforms}\n`;
-            emailContent += `Timeline: ${data.timeline}\n`;
-            emailContent += `Budget: ${data.budget || 'Not specified'}\n`;
-            emailContent += `Design Needs: ${data.designNeeds || 'Not specified'}\n\n`;
-            emailContent += `Key Features:\n${data.keyFeatures}\n\n`;
-            if (data.additionalInfo) {
-                emailContent += `Additional Info:\n${data.additionalInfo}\n\n`;
-            }
-            emailContent += `Contact Email: ${data.contactEmail}`;
-            
-            // Create mailto link (you can replace this with actual form submission to your backend)
-            const subject = `Project Inquiry - ${data.companyName}`;
-            const mailtoLink = `mailto:prodwilliamsouef@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailContent)}`;
-            
-            // In a real implementation, you'd send this to your server
-            // For now, we'll show success and log the data
-            
-            // Show success message
-            document.getElementById('intakeForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Optional: Open email client with pre-filled content
-            // window.location.href = mailtoLink;
-            
-            // For demo purposes, show an alert with the data
-            alert('Form submitted successfully! Check the console for the data that would be sent to you.');
-        });
+        // No JS needed for Formspree basic usage
     </script>
 </body>
 </html> 
