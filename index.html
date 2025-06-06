@@ -162,14 +162,12 @@
       <h1>Project Intake Form</h1>
       <p>Let's build something amazing together</p>
     </div>
-
     <div class="form-content">
       <form id="myForm">
         <div class="form-group">
           <label for="companyName">Company/Project Name <span class="required">*</span></label>
           <input type="text" id="companyName" name="companyName" required />
         </div>
-
         <div class="form-group">
           <label for="projectType">What type of project is this? <span class="required">*</span></label>
           <select id="projectType" name="projectType" required>
@@ -181,7 +179,6 @@
             <option value="other">Other</option>
           </select>
         </div>
-
         <div class="form-group">
           <label>Platforms Needed <span class="required">*</span></label>
           <div class="checkbox-group">
@@ -199,12 +196,10 @@
             </div>
           </div>
         </div>
-
         <div class="form-group">
           <label for="keyFeatures">Key Features/Functionality <span class="required">*</span></label>
           <textarea id="keyFeatures" name="keyFeatures" required></textarea>
         </div>
-
         <div class="form-group">
           <label for="timeline">Desired Timeline <span class="required">*</span></label>
           <select id="timeline" name="timeline" required>
@@ -216,7 +211,6 @@
             <option value="flexible">Flexible/TBD</option>
           </select>
         </div>
-
         <div class="form-group">
           <label>Budget Range</label>
           <div class="budget-grid">
@@ -242,7 +236,6 @@
             </div>
           </div>
         </div>
-
         <div class="form-group">
           <label for="designNeeds">Design Requirements</label>
           <select id="designNeeds" name="designNeeds">
@@ -253,43 +246,33 @@
             <option value="premium-design">Premium, sophisticated design</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="additionalInfo">Additional Context/Requirements</label>
           <textarea id="additionalInfo" name="additionalInfo"></textarea>
         </div>
-
         <div class="form-group">
           <label for="contactEmail">Best Email for Follow-up <span class="required">*</span></label>
           <input type="email" id="contactEmail" name="contactEmail" required />
         </div>
-
         <button type="submit" class="submit-btn">Submit & Get Free Project Audit</button>
-
         <div class="note">
           <strong>What's Next:</strong> I'll review your submission and send you a free project audit within 24 hours.
         </div>
       </form>
-
       <div class="success-message" id="successMessage">
         ✅ Thank you! Your submission has been received. I'll send you a detailed project audit within 24 hours.
       </div>
     </div>
   </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const form = document.getElementById("myForm");
       const successMessage = document.getElementById("successMessage");
-
       if (!form) return;
-
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
-
         const formData = new FormData(form);
         const platforms = formData.getAll("platforms");
-
         const data = {
           companyName: formData.get("companyName"),
           projectType: formData.get("projectType"),
@@ -301,7 +284,6 @@
           additionalInfo: formData.get("additionalInfo"),
           contactEmail: formData.get("contactEmail"),
         };
-
         try {
           const response = await fetch("https://wrfs.app.n8n.cloud/webhook/newClientWebhook", {
             method: "POST",
@@ -310,7 +292,6 @@
             },
             body: JSON.stringify(data),
           });
-
           if (response.ok) {
             form.style.display = "none";
             successMessage.style.display = "block";
